@@ -59,12 +59,12 @@ namespace DatingApp.API
             }
             else 
             {
-                app.UseExceptionHandler(builder => 
+                app.UseExceptionHandler(builder =>
                 {
-                    builder.Run(async context => 
+                    builder.Run(async context =>
                     {
                         context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
- 
+
                         var error = context.Features.Get<IExceptionHandlerFeature>();
                         if (error != null)
                         {
@@ -81,9 +81,9 @@ namespace DatingApp.API
 
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
-            app.UseAuthorization();
+            app.UseAuthentication(); 
 
-            app.UseAuthentication();            
+            app.UseAuthorization();                       
 
             app.UseEndpoints(endpoints =>
             {
